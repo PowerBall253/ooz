@@ -16,4 +16,16 @@ pipeline:
       - x86_64-w64-mingw32-g++ -fpic -c *.cpp
       - x86_64-w64-mingw32-g++ -shared -o lib/ooz.dll *.o
     when:
-      event: push
+      event: [push, tag]
+
+  release:
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_token
+      files:
+        - bin/*
+        - lib/*
+      draft: true
+    when:
+      event: tag
