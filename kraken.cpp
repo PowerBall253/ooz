@@ -4394,15 +4394,15 @@ int main(int argc, char *argv[]) {
         LoadLib();
       output = new byte[input_size + 65536];
       if (!output) error("memory error", curfile);
-      *(uint64*)output = input_size;
       QueryPerformanceCounter((LARGE_INTEGER*)&start);
       if (arg_dll) {
-        outbytes = OodLZ_Compress(arg_compressor, input, input_size, output + 8, arg_level, 0, 0, 0, 0, 0);
+        // outbytes = OodLZ_Compress(arg_compressor, input, input_size, output + 8, arg_level, 0, 0, 0, 0, 0);
+	outbytes = OodLZ_Compress(arg_compressor, input, input_size, output, arg_level, 0, 0, 0, 0, 0);
       } else {
-        outbytes = CompressBlock(arg_compressor, input, output + 8, input_size, arg_level, 0, 0, 0);
+        // outbytes = CompressBlock(arg_compressor, input, output + 8, input_size, arg_level, 0, 0, 0);
+	outbytes = CompressBlock(arg_compressor, input, output, input_size, arg_level, 0, 0, 0);
       }
       if (outbytes < 0) error("compress failed", curfile);
-      outbytes += 8;
       QueryPerformanceCounter((LARGE_INTEGER*)&end);
       QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
       double seconds = (double)(end - start) / freq;

@@ -1196,7 +1196,7 @@ int EncodeArray_Huff(uint8 *dst, uint8 *dst_end, const uint8 *src, int src_size,
   HuffBuilder huff;
   uint8 temp[256];
 
-  huff.BuildCodeLens(histo, src_size, 11, level >= 6);
+  huff.BuildCodeLens(histo, src_size, 11, level >= 7);
 
   int mode = (opts & kEntropyOpt_AllowDoubleHuffman) && IsDoubleHuffmanFaster(platforms, speed_tradeoff, src_size, huff.num_symbols_) ? 4 : 2;
   *mode_ptr = mode;
