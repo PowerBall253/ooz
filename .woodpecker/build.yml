@@ -15,3 +15,5 @@ pipeline:
       # Build library for Windows
       - x86_64-w64-mingw32-g++ -fpic -c *.cpp
       - x86_64-w64-mingw32-g++ -shared -o lib/ooz.dll *.o
+    when:
+      event: push

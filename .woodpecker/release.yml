@@ -23,3 +23,5 @@ pipeline:
         from_secret: github_token
       files: "{bin,lib}/*"
       draft: true
+    when:
+      event: tag
