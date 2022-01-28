@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: debian:sid-slim
+    image: debian:stable-slim
     commands:
       - apt-get update -y
       - apt-get install -y gcc g++ mingw-w64
