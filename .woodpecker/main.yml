@@ -8,12 +8,12 @@ pipeline:
       # Build binary for Linux
       - g++ -o bin/ooz *.cpp
       # Build binary for Windows
-      - x86_64-w64-mingw32-g++ -o bin/ooz.exe *.cpp
+      - x86_64-w64-mingw32-g++ -o bin/ooz.exe *.cpp -std=c++17 -static
       # Build library for Linux
       - g++ -fpic -c *.cpp
       - g++ -shared -o lib/libooz.so *.o
       # Build library for Windows
-      - x86_64-w64-mingw32-g++ -fpic -c *.cpp
+      - x86_64-w64-mingw32-g++ -fpic -c *.cpp -static
       - x86_64-w64-mingw32-g++ -shared -o lib/ooz.dll *.o
     when:
       event: [push, tag]
