@@ -4340,6 +4340,11 @@ struct LRMCascade;
 int CompressBlock(int codec_id, uint8 *src_in, uint8 *dst_in, int src_size, int level,
                   const CompressOptions *compressopts, uint8 *src_window_base, LRMCascade *lrm);
 
+int Kraken_Compress(byte* src, size_t src_len, byte* dst, int level) {
+    int outbytes = CompressBlock(8, src, dst + 8, src_len, level, 0, 0, 0);
+    return outbytes;
+}
+
 int main(int argc, char *argv[]) {
   int64_t start, end, freq;
   int argi;
@@ -4477,4 +4482,3 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "%d files verified OK!\n", nverify);
   return 0;
 }
-
