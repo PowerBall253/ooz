@@ -1,11 +1,9 @@
 #include "stdafx.h"
 #include <algorithm>
-#include <vector>
 #include "compress.h"
 #include "compr_util.h"
 #include "compr_entropy.h"
 #include "qsort.h"
-#include "match_hasher.h"
 #include "compr_match_finder.h"
 #include "compr_leviathan.h"
 #include "compr_kraken.h"
