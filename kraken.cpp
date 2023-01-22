@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "stdafx.h"
 #include <sys/stat.h>
+#include "ooz.h"
 
 // Header in front of each 256k block
 typedef struct KrakenHeader {
@@ -4345,7 +4346,7 @@ int Kraken_Compress(byte* src, size_t src_len, byte* dst, int level) {
     return outbytes;
 }
 
-int main(int argc, char *argv[]) {
+/*int main(int argc, char *argv[]) {
   int64_t start, end, freq;
   int argi;
 
@@ -4481,4 +4482,4 @@ int main(int argc, char *argv[]) {
   if (nverify)
     fprintf(stderr, "%d files verified OK!\n", nverify);
   return 0;
-}
+}*/
