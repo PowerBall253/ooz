@@ -156,7 +156,7 @@ void LZNA_InitLookup(LznaState *lut) {
   LznaNibbleModel_InitN(&lut->long_length_recent.third, 1);
 
   for (i = 0; i < 48; i++)
-    lut->short_length[0][i] = 0x2000;
+    *(*lut->short_length + i) = 0x2000;
 
   LznaNearDistModel_Init(lut->near_dist, 2);
   LznaLowBitsDistanceModel_Init(lut->low_bits_of_distance, 2);
