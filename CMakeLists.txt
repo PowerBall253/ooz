@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.10)
 project(ooz)
-
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "-O2")
+
+if (MSVC)
+        set(CMAKE_CXX_FLAGS "/O2")
+else()
+        set (CMAKE_CXX_FLAGS "-O2")
+endif()
 
 file(GLOB SOURCES *.cpp)
 

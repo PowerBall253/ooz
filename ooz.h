@@ -2,7 +2,11 @@
 #include <cstddef>
 #include <vector>
 
+#ifdef _MSC_VER
+#define EXPORT __declspec(dllexport)
+#else
 #define EXPORT __attribute__ ((visibility ("default")))
+#endif
 
 extern "C" {
     EXPORT int Kraken_Compress(uint8_t* src, size_t src_len, uint8_t* dst, int level);

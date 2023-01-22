@@ -35,32 +35,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      #- name: Set up MinGW
-      #  uses: egor-tensin/setup-mingw@v2
-      #  with:
-      #    platform: x64
-
       - name: Configure CMake
-        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -G "MinGW Makefiles"
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-
-      - name: Rename
-        run: |
-          mv ${{github.workspace}}/build/libooz.a ${{github.workspace}}/build/libooz-win.a
-          mv ${{github.workspace}}/build/libooz.dll ${{github.workspace}}/build/libooz-win.dll
       
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.ACTIONS_TOKEN }}
           file_glob: true
-          file: "**/libooz-win.a"
+          file: "**/ooz.lib"
           tag: ${{ github.ref }}
 
       - uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.ACTIONS_TOKEN }}
           file_glob: true
-          file: "**/libooz-win.dll"
+          file: "**/ooz.dll"
           tag: ${{ github.ref }}
