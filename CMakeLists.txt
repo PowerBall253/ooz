@@ -13,5 +13,7 @@ file(GLOB SOURCES *.cpp)
 add_library(ooz_dynamic SHARED ${SOURCES})
 add_library(ooz_static STATIC ${SOURCES})
 
+target_compile_options(ooz_static PRIVATE "-static")
+
 set_target_properties(ooz_dynamic PROPERTIES OUTPUT_NAME ooz)
 set_target_properties(ooz_static PROPERTIES OUTPUT_NAME ooz)

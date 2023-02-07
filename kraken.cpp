@@ -4151,9 +4151,6 @@ FAIL:
   return -1;
 }
 
-// The decompressor will write outside of the target buffer.
-#define SAFE_SPACE 64
-
 void error(const char *s, const char *curfile = NULL) {
   if (curfile)
     fprintf(stderr, "%s: ", curfile);
