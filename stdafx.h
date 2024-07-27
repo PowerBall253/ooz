@@ -19,8 +19,10 @@
 #undef max
 #undef min
 #else
-#include <stddef.h>
+#if !(defined(__MINGW32__) && defined(__forceinline))
 #define __forceinline inline
+#endif
+#include <stddef.h>
 #define _byteswap_ushort(x) __builtin_bswap16((uint16)(x))
 #define _byteswap_ulong(x) __builtin_bswap32((uint32)(x))
 #define _byteswap_uint64(x) __builtin_bswap64((uint64)(x))
