@@ -32,9 +32,28 @@ jobs:
       run: cmake --build build --config ${{env.BUILD_TYPE}}
       shell: alpine.sh {0}
 
-    - run: |
-        mv build/libooz.a build/libooz_linux.a
-        mv build/libooz.so build/libooz_linux.so
+    - run: mv build/libooz.a build/libooz_linux.a
+
+    - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.ACTIONS_TOKEN }}
+          file_glob: true
+          file: "**/libooz_linux.a"
+          tag: ${{ github.ref }}
+
+  linux-shared-build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build build --config ${{env.BUILD_TYPE}}
+
+    - run: mv build/libooz.so build/libooz_linux.so
 
     - uses: marvinpinto/action-automatic-releases@latest
       with:
@@ -42,7 +61,6 @@ jobs:
         prerelease: false
         files: |
           **/libooz_linux.so
-          **/libooz_linux.a
           **/ooz.h
 
   windows-build:
@@ -114,4 +132,3 @@ jobs:
           file_glob: true
           file: "**/libooz_mingw.dll"
           tag: ${{ github.ref }}
-

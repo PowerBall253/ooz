@@ -10,9 +10,6 @@ if (MSVC)
         add_link_options(/INCREMENTAL:NO /NODEFAULTLIB:MSVCRT)
 else()
         set(CMAKE_CXX_FLAGS "-O2")
-
-        set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
-        add_link_options(-static)
 endif()
 
 file(GLOB SOURCES *.cpp)
