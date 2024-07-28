@@ -4,8 +4,12 @@ set(CMAKE_CXX_STANDARD 17)
 
 if (MSVC)
         set(CMAKE_CXX_FLAGS "/O2")
+
+        set(CMAKE_FIND_LIBRARY_SUFFIXES ".lib")
+        add_compile_options(/MT)
+        add_link_options(/INCREMENTAL:NO /NODEFAULTLIB:MSVCRT)
 else()
-        set (CMAKE_CXX_FLAGS "-O2")
+        set(CMAKE_CXX_FLAGS "-O2")
 endif()
 
 file(GLOB SOURCES *.cpp)
